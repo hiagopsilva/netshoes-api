@@ -32,8 +32,6 @@ describe('List Product Use Case', () => {
       isFavorite: faker.datatype.boolean(),
     })
 
-    console.log({ productList })
-
     expect(productList).toEqual(expect.any(Array))
   })
 })
