@@ -2,6 +2,7 @@
 export interface ProductRepository {
   create: (data: ProductType.Root) => Promise<any>
   list: () => Promise<any>
+  find: ({ isFavorite }: ProductType.IsFavoriteList) => Promise<any>
   findOneAndUpdate: (
     id: string,
     value: Pick<ProductType.IsFavorite, 'isFavorite'>,

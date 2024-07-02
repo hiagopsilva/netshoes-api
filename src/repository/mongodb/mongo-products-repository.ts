@@ -13,6 +13,12 @@ export class MongoProductRepository implements ProductRepository {
     return product
   }
 
+  async find(data: ProductType.IsFavoriteList) {
+    const product = await SelectedProduct.find(data)
+
+    return product
+  }
+
   async findOneAndUpdate(
     id: string,
     value: Pick<ProductType.IsFavorite, 'isFavorite'>,

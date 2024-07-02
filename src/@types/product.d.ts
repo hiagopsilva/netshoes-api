@@ -50,4 +50,6 @@ declare namespace ProductType {
     productId: string
     isFavorite: boolean
   }
+
+  type IsFavoriteList = Partial<Pick<ProductType.IsFavorite, 'isFavorite'>>
 }
