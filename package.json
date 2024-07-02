@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
+    "@types/node": "^20.14.9",
     "eslint": "8",
     "prisma": "^5.16.1"
   }
