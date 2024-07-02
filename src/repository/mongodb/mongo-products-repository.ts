@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import SelectedProduct from '../../schemas/product.schema'
 import { ProductRepository } from '../product-repository'
 
 export class MongoProductRepository implements ProductRepository {
-  async create(data: any) {
+  async create(data: ProductType.Root) {
     const product = await SelectedProduct.create(data)
     return product
   }
@@ -14,7 +13,11 @@ export class MongoProductRepository implements ProductRepository {
     return product
   }
 
-  async findOneAndUpdate(id: any, value: any, config: any) {
+  async findOneAndUpdate(
+    id: string,
+    value: Pick<ProductType.IsFavorite, 'isFavorite'>,
+    config: { new: boolean },
+  ) {
     const product = await SelectedProduct.findByIdAndUpdate(id, value, config)
 
     return product

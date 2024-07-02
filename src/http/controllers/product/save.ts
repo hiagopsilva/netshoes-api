@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -50,8 +49,7 @@ export async function saveProduct(
   try {
     const makeSaveProductUseCase = MakeSaveProductUseCase()
 
-    const { product }: any =
-      await makeSaveProductUseCase.execute(bodyValuesToSave)
+    const { product } = await makeSaveProductUseCase.execute(bodyValuesToSave)
 
     return reply.status(200).send(product)
   } catch (err) {

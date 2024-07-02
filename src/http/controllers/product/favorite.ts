@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 import { z } from 'zod'
@@ -18,7 +17,7 @@ export async function favoriteProduct(
   try {
     const makeFavoriteProductUseCase = MakeFavoriteProductUseCase()
 
-    const { product }: any = await makeFavoriteProductUseCase.execute({
+    const { product } = await makeFavoriteProductUseCase.execute({
       productId,
       isFavorite,
     })

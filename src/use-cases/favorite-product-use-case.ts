@@ -11,8 +11,7 @@ export class FavoriteProductUseCase {
   async execute({
     productId,
     isFavorite,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }: any): Promise<FavoriteProductUseCaseResponse> {
+  }: ProductType.IsFavorite): Promise<FavoriteProductUseCaseResponse> {
     const product = await this.productRepository.findOneAndUpdate(
       productId,
       {
