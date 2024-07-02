@@ -4,8 +4,7 @@ import { MakeSaveProductUseCase } from '@/use-cases/factory/make-save-product-us
 import { MakeListProductUseCase } from '@/use-cases/factory/make-list-product-use-case'
 
 const fetchData = async () => {
-  cron.schedule('*/1 * * * *', async () => {
-    // cron.schedule('0 * * * *', async () => {
+  cron.schedule('0 * * * *', async () => {
     console.log('Running a task...')
 
     await app.ready()
