@@ -25,7 +25,7 @@ export class InMemoryProductsRepositories implements ProductRepository {
   }
 
   async find({ isFavorite }: ProductType.IsFavoriteList) {
-    return this.items.find((item) => item.isFavorite === isFavorite)
+    return this.items.filter((item) => item.isFavorite === isFavorite)
   }
 
   async findOneAndUpdate(
