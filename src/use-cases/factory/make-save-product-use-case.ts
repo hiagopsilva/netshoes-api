@@ -1,5 +1,5 @@
 import { MongoProductRepository } from '../../repository/mongodb/mongo-products-repository'
-import { CreateProductUseCase } from '../product-use-case'
+import { CreateProductUseCase } from '../save-product-use-case'
 
 export function MakeSaveProductUseCase() {
   const productRepository = new MongoProductRepository()

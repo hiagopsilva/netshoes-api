@@ -8,8 +8,8 @@ export class MongoProductRepository implements ProductRepository {
     return product
   }
 
-  async findById(id: string) {
-    const product = await SelectedProduct.findById(id)
+  async list() {
+    const product = await SelectedProduct.find()
 
     return product
   }

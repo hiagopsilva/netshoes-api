@@ -1,4 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ProductRepository {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   create: (data: any) => Promise<any>
+  list: () => Promise<any>
 }
