@@ -1,8 +1,7 @@
-import Product from '../schemas/product.schema'
 import { ProductRepository } from '../repository/product-repository'
 
 interface ListProductUseCaseResponse {
-  product: typeof Product
+  product: ProductType.Item
 }
 
 export class ListProductUseCase {

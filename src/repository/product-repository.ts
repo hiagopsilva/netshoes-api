@@ -6,6 +6,6 @@ export interface ProductRepository {
   findOneAndUpdate: (
     id: string,
     value: Pick<ProductType.IsFavorite, 'isFavorite'>,
-    config: { new: boolean },
+    config?: { new: boolean },
   ) => Promise<any>
 }
