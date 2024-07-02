@@ -3,12 +3,16 @@
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
-    "test": "vitest"
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@prisma/client": "^5.16.1",
     "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^1.6.0",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "mongoose": "^8.4.4",
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20.14.9",
+    "@vitest/ui": "^1.6.0",
     "eslint": "8",
     "prisma": "^5.16.1"
   }
