@@ -46,10 +46,15 @@ declare namespace ProductType {
     stockAvailable: boolean
   }
 
+  type Item = Root & {
+    _id: string
+    isFavorite: boolean
+  }
+
   type IsFavorite = {
     productId: string
     isFavorite: boolean
   }
 
-  type IsFavoriteList = Partial<Pick<ProductType.IsFavorite, 'isFavorite'>>
+  type IsFavoriteList = Pick<ProductType.IsFavorite, 'isFavorite'>
 }

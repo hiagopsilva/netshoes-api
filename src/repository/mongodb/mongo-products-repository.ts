@@ -22,7 +22,7 @@ export class MongoProductRepository implements ProductRepository {
   async findOneAndUpdate(
     id: string,
     value: Pick<ProductType.IsFavorite, 'isFavorite'>,
-    config: { new: boolean },
+    config?: { new: boolean },
   ) {
     const product = await SelectedProduct.findByIdAndUpdate(id, value, config)
 
