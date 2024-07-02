@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
-import { createSize } from './controllers/size/create'
+import { saveProduct } from './controllers/product/save'
 
-export async function SizeRoutes(app: FastifyInstance) {
-  app.post('/size/create', createSize)
+export async function ProductRoutes(app: FastifyInstance) {
+  app.post('/product/save', saveProduct)
 }

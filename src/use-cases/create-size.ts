@@ -15,10 +15,6 @@ export class CreateSizeUseCase {
       label,
     })
 
-    console.log({
-      size,
-    })
-
     return { size }
   }
 }
