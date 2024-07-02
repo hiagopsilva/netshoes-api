@@ -8,7 +8,8 @@
     "test:e2e": "export NODE_ENV=TEST & vitest run --dir src/http",
     "test:e2e:watch": "vitest --dir src/http",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:coverage:open": "open ./coverage/index.html"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",

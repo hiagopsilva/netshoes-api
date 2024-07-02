@@ -18,4 +18,16 @@ describe('List Product (e2e)', () => {
     expect(response.body).toBeDefined()
     expect(response.body).not.toBeNull()
   })
+
+  it('should to be able to list favorites product', async () => {
+    const response = await request(app.server).get(
+      `/product?isFavorite=${true}`,
+    )
+
+    expect(response.statusCode).toEqual(200)
+    expect(response.body).toBeDefined()
+    expect(response.body).not.toBeNull()
+    expect(response.body).toEqual(expect.any(Array))
+    expect(response.body[0].isFavorite).toEqual(true)
+  })
 })
