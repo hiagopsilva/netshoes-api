@@ -15,45 +15,45 @@ datasource db {
 
 model SelectedProduct {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
-  selectedProduct String
-  department      Department  @relation(fields: [departmentId], references: [id])
-  brand           Brand       @relation(fields: [brandId], references: [id])
-  productType     ProductType @relation(fields: [productTypeId], references: [id])
   name            String
-  product         Product     @relation(fields: [productCode], references: [code])
+  selectedProduct String
   stockAvailable  Boolean
   departmentId    String      @db.ObjectId
+  department      Department  @relation(fields: [departmentId], references: [id])
   brandId         String      @db.ObjectId
+  brand           Brand       @relation(fields: [brandId], references: [id])
   productTypeId   String      @db.ObjectId
-  productCode     String      @db.ObjectId
+  productType     ProductType @relation(fields: [productTypeId], references: [id])
+  productId       String      @db.ObjectId
+  product         Product     @relation(fields: [productId], references: [code])
 }
 
 model Department {
-  id              String            @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  SelectedProduct SelectedProduct[]
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  products SelectedProduct[]
 }
 
 model Brand {
-  id              String            @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  SelectedProduct SelectedProduct[]
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  products SelectedProduct[]
 }
 
 model ProductType {
-  id              String            @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  SelectedProduct SelectedProduct[]
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  products SelectedProduct[]
 }
 
 model Product {
   code             String            @id @default(auto()) @map("_id") @db.ObjectId
   available        Boolean
   visible          Boolean
-  details          ProductDetails    @relation(fields: [productDetailsId], references: [id])
+  detailsId        String            @db.ObjectId
+  details          ProductDetails    @relation(fields: [detailsId], references: [id])
   image            String
-  SelectedProduct  SelectedProduct[]
-  productDetailsId String            @db.ObjectId
+  selectedProducts SelectedProduct[]
 }
 
 model ProductDetails {
@@ -62,15 +62,15 @@ model ProductDetails {
   description String
   available   Boolean
   visible     Boolean
+  sizeId      String    @db.ObjectId
   size        Size      @relation(fields: [sizeId], references: [id])
   sku         String
   Product     Product[]
-  sizeId      String    @db.ObjectId
 }
 
 model Size {
   id             String           @id @default(auto()) @map("_id") @db.ObjectId
   code           String
   label          String
-  ProductDetails ProductDetails[]
+  productDetails ProductDetails[]
 }
