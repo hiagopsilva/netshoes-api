@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@fastify/cors": "^9.0.1",
     "@prisma/client": "^5.16.1",
     "@types/supertest": "^6.0.2",
     "@vitest/coverage-v8": "^1.6.0",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
+    "fastify-cors": "^6.1.0",
     "mongodb": "^6.8.0",
     "mongodb-memory-server": "^9.4.0",
     "mongoose": "^8.4.4",
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
+    "@types/fastify-cors": "^2.1.0",
     "@types/node": "^20.14.9",
     "@types/node-cron": "^3.0.11",
     "@vitest/ui": "^1.6.0",

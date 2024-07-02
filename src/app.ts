@@ -3,11 +3,19 @@ import { ZodError } from 'zod'
 import dbConnection from './lib/mongodb'
 import { ProductRoutes } from './http/routes'
 
+import cors from '@fastify/cors'
+
 import fetchData from './job/fetch-data'
 
 dbConnection()
 
 export const app = fastify()
+
+app.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+})
 
 app.register(ProductRoutes)
 
