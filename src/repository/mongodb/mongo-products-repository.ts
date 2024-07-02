@@ -13,4 +13,10 @@ export class MongoProductRepository implements ProductRepository {
 
     return product
   }
+
+  async findOneAndUpdate(id: any, value: any, config: any) {
+    const product = await SelectedProduct.findByIdAndUpdate(id, value, config)
+
+    return product
+  }
 }

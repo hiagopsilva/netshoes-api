@@ -47,6 +47,7 @@ const SelectedProductSchema = new Schema({
   name: { type: String, required: true },
   product: { type: [ProductSchema], required: true },
   stockAvailable: { type: Boolean, required: true },
+  isFavorite: { type: Boolean, default: false },
 })
 
 const SelectedProduct = mongoose.model('SelectedProduct', SelectedProductSchema)
