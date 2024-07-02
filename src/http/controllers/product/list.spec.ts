@@ -1,4 +1,5 @@
 import { app } from '@/app'
+import mongoose from 'mongoose'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -29,5 +30,14 @@ describe('List Product (e2e)', () => {
     expect(response.body).not.toBeNull()
     expect(response.body).toEqual(expect.any(Array))
     expect(response.body[0].isFavorite).toEqual(true)
+  })
+
+  it('should to be not able list  product', async () => {
+    await mongoose.disconnect()
+
+    const response = await request(app.server).get('/product').send()
+
+    expect(response.statusCode).toEqual(500)
+    expect(response.body).not.toBeNull()
   })
 })

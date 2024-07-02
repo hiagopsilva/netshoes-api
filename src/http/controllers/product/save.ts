@@ -53,7 +53,6 @@ export async function saveProduct(
 
     return reply.status(200).send(product)
   } catch (err) {
-    console.log({ err })
-    throw err
+    reply.status(500).send({ message: 'Internal server error', error: err })
   }
 }
