@@ -2,6 +2,7 @@ import { app } from '@/app'
 import cron from 'node-cron'
 import { MakeSaveProductUseCase } from '@/use-cases/factory/make-save-product-use-case'
 import { MakeListProductUseCase } from '@/use-cases/factory/make-list-product-use-case'
+import { env } from '@/env'
 
 const fetchData = async () => {
   cron.schedule('0 * * * *', async () => {
@@ -9,9 +10,8 @@ const fetchData = async () => {
 
     await app.ready()
 
-    const fetchData = await fetch(
-      'https://run.mocky.io/v3/ce0459f5-e963-4a8e-b4b1-53132c4db709',
-    )
+    const fetchData = await fetch(env.API_EXTERNAL)
+
     const makeSaveProductUseCase = MakeSaveProductUseCase()
 
     const makeListProductsUseCase = MakeListProductUseCase()
