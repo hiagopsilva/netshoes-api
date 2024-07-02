@@ -1,5 +1,8 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
+import dbConnection from './lib/mongodb'
+
+dbConnection()
 
 export const app = fastify()
 
