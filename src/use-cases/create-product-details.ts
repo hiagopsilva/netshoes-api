@@ -9,13 +9,21 @@ export class CreateProductDetailsUseCase {
   constructor(private productDetailsRepository: ProductDetailsRepository) {}
 
   async execute({
-    code,
-    label,
+    name,
+    description,
+    available,
+    visible,
+    sku,
+    sizeId,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }: any): Promise<CreateProductDetailsUseCaseResponse> {
     const productDetails = await this.productDetailsRepository.create({
-      code,
-      label,
+      name,
+      description,
+      available,
+      visible,
+      sku,
+      sizeId,
     })
 
     return { productDetails }
