@@ -4,10 +4,14 @@
     "start": "node build/server.js",
     "build": "tsup src --out-dir build"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "dependencies": {
     "@prisma/client": "^5.16.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
+    "mongoose": "^8.4.4",
     "tsup": "^8.1.0",
     "tsx": "^4.16.0",
     "typescript": "^5.5.2",
