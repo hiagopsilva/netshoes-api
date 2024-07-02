@@ -1,5 +1,5 @@
 import { InMemoryProductsRepositories } from '@/repository/in-memory/in-memory-products-repositories'
-import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { SaveProductUseCase } from './save-product-use-case'
 import { PAYLOAD_SAVE_PRODUCT } from '@/utils/payloads'
 
@@ -10,12 +10,6 @@ describe('List Product Use Case', () => {
   beforeEach(async () => {
     productsRepository = new InMemoryProductsRepositories()
     sut = new SaveProductUseCase(productsRepository)
-
-    vi.useFakeTimers()
-  })
-
-  afterEach(() => {
-    vi.useRealTimers()
   })
 
   it('should be able to list product', async () => {
