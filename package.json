@@ -8,7 +8,6 @@
     "@prisma/client": "^5.16.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
-    "prisma": "^5.16.1",
     "tsup": "^8.1.0",
     "tsx": "^4.16.0",
     "typescript": "^5.5.2",
@@ -16,6 +15,7 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
-    "eslint": "8"
+    "eslint": "8",
+    "prisma": "^5.16.1"
   }
 }

@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model SelectedProduct {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  selectedProduct String
+  department      Department  @relation(fields: [departmentId], references: [id])
+  brand           Brand       @relation(fields: [brandId], references: [id])
+  productType     ProductType @relation(fields: [productTypeId], references: [id])
+  name            String
+  product         Product     @relation(fields: [productCode], references: [code])
+  stockAvailable  Boolean
+  departmentId    String      @db.ObjectId
+  brandId         String      @db.ObjectId
+  productTypeId   String      @db.ObjectId
+  productCode     String      @db.ObjectId
+}
+
+model Department {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  SelectedProduct SelectedProduct[]
+}
+
+model Brand {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  SelectedProduct SelectedProduct[]
+}
+
+model ProductType {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  SelectedProduct SelectedProduct[]
+}
+
+model Product {
+  code             String            @id @default(auto()) @map("_id") @db.ObjectId
+  available        Boolean
+  visible          Boolean
+  details          ProductDetails    @relation(fields: [productDetailsId], references: [id])
+  image            String
+  SelectedProduct  SelectedProduct[]
+  productDetailsId String            @db.ObjectId
+}
+
+model ProductDetails {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  available   Boolean
+  visible     Boolean
+  size        Size      @relation(fields: [sizeId], references: [id])
+  sku         String
+  Product     Product[]
+  sizeId      String    @db.ObjectId
+}
+
+model Size {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  code           String
+  label          String
+  ProductDetails ProductDetails[]
+}
