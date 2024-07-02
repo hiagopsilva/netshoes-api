@@ -1,4 +1,7 @@
-version: '3'
+networks:
+  netshoes-api_default:
+    driver: bridge
+    external: true
 
 services:
   mongodb: 
@@ -6,7 +9,9 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-
+    networks:
+      - netshoes-api_default
+      
   netshoes-api:
     container_name: netshoes-api
     build:
@@ -20,5 +25,6 @@ services:
     volumes:
       - .:/usr/src/app/
       - /usr/src/app/node_modules
-
+    networks:
+      - netshoes-api_default
    
