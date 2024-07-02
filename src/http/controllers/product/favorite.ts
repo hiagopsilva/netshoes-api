@@ -26,7 +26,7 @@ export async function favoriteProduct(
     const makeListProductUseCase = MakeListProductUseCase()
 
     const { product } = await makeListProductUseCase.execute({
-      isFavorite,
+      isFavorite: true,
     })
 
     const listProducts = product.map((product) => {
