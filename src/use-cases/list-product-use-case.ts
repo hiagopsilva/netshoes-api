@@ -1,7 +1,7 @@
 import { ProductRepository } from '../repository/product-repository'
 
 interface ListProductUseCaseResponse {
-  product: ProductType.Item
+  product: ProductType.Item[]
 }
 
 export class ListProductUseCase {

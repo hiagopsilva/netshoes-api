@@ -1,4 +1,5 @@
 import { app } from '@/app'
+import { PAYLOAD_SAVE_PRODUCT } from '@/utils/payloads'
 import mongoose from 'mongoose'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
@@ -21,6 +22,15 @@ describe('List Product (e2e)', () => {
   })
 
   it('should to be able to list favorites product', async () => {
+    const responseSave = await request(app.server)
+      .post('/product/save')
+      .send(PAYLOAD_SAVE_PRODUCT)
+
+    await request(app.server).post('/product/favorite').send({
+      productId: responseSave.body._id,
+      isFavorite: true,
+    })
+
     const response = await request(app.server).get(
       `/product?isFavorite=${true}`,
     )

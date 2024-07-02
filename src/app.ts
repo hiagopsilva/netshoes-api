@@ -3,11 +3,15 @@ import { ZodError } from 'zod'
 import dbConnection from './lib/mongodb'
 import { ProductRoutes } from './http/routes'
 
+import fetchData from './job/fetch-data'
+
 dbConnection()
 
 export const app = fastify()
 
 app.register(ProductRoutes)
+
+fetchData()
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
