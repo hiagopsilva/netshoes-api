@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 
 import { z } from 'zod'
 import { MakeFavoriteProductUseCase } from '../../../use-cases/factory/make-favorite-product-use-case'
+import { MakeListProductUseCase } from '@/use-cases/factory/make-list-product-use-case'
 
 export async function favoriteProduct(
   request: FastifyRequest,
@@ -17,12 +18,27 @@ export async function favoriteProduct(
   try {
     const makeFavoriteProductUseCase = MakeFavoriteProductUseCase()
 
-    const { product } = await makeFavoriteProductUseCase.execute({
+    await makeFavoriteProductUseCase.execute({
       productId,
       isFavorite,
     })
 
-    return reply.status(200).send(product)
+    const makeListProductUseCase = MakeListProductUseCase()
+
+    const { product } = await makeListProductUseCase.execute({
+      isFavorite,
+    })
+
+    const listProducts = product.map((product) => {
+      return {
+        _id: product._id,
+        name: product.name,
+        image: product.product[0].image,
+        isFavorite: product.isFavorite,
+      }
+    })
+
+    return reply.status(200).send(listProducts)
   } catch (err) {
     reply.status(500).send({ message: 'Internal server error', error: err })
   }
