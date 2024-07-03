@@ -3,38 +3,44 @@ import { MakeSaveProductUseCase } from '@/use-cases/factory/make-save-product-us
 import { MakeListProductUseCase } from '@/use-cases/factory/make-list-product-use-case'
 import { env } from '@/env'
 
+export const handleProductJob = async () => {
+  const fetchData = await fetch(env.API_EXTERNAL)
+
+  const makeSaveProductUseCase = MakeSaveProductUseCase()
+
+  const makeListProductsUseCase = MakeListProductUseCase()
+
+  const { product: productsList } = await makeListProductsUseCase.execute({
+    isFavorite: false,
+  })
+
+  const productsSavedCode = productsList.map(
+    (product: ProductType.Item) => product.selectedProduct,
+  )
+
+  const { products } = await fetchData.json()
+
+  const productsToSave = products.filter(
+    (product: ProductType.Item) =>
+      !productsSavedCode.includes(product.selectedProduct),
+  )
+
+  const list = []
+
+  for (const productToSave of productsToSave) {
+    const { product } = await makeSaveProductUseCase.execute(productToSave)
+
+    list.push(product)
+  }
+
+  return list
+}
+
 const fetchData = async () => {
   cron.schedule('0 * * * *', async () => {
     console.log('Running a task...')
 
-    const fetchData = await fetch(env.API_EXTERNAL)
-
-    const makeSaveProductUseCase = MakeSaveProductUseCase()
-
-    const makeListProductsUseCase = MakeListProductUseCase()
-
-    const { product: productsList } = await makeListProductsUseCase.execute({
-      isFavorite: false,
-    })
-
-    const productsSavedCode = productsList.map(
-      (product: ProductType.Item) => product.selectedProduct,
-    )
-
-    const { products } = await fetchData.json()
-
-    const productsToSave = products.filter(
-      (product: ProductType.Item) =>
-        !productsSavedCode.includes(product.selectedProduct),
-    )
-
-    const list = []
-
-    for (const productToSave of productsToSave) {
-      const { product } = await makeSaveProductUseCase.execute(productToSave)
-
-      list.push(product)
-    }
+    await handleProductJob()
 
     console.log(`Task completed in ${new Date().toISOString()}`)
   })
