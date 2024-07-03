@@ -92,8 +92,8 @@ Teste UI (Visualização dos testes pela interface):
 
 ### Demo
 <div style="display:flex;justify-content:center;align-items:center">
-    <img src="./src/assets/demo-coverage.png" alt="Descrição da imagem" width="490" height="300" />
-    <img src="./src/assets/demo-tests.png" alt="Descrição da imagem" width="490" height=300 />
+    <img src="./assets/demo-coverage.png" alt="Descrição da imagem" width="490" height="300" />
+    <img src="./assets/demo-tests.png" alt="Descrição da imagem" width="490" height=300 />
 </div>
 
 ### Observãçoes: 
