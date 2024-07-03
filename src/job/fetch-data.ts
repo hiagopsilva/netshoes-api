@@ -1,4 +1,3 @@
-import { app } from '@/app'
 import cron from 'node-cron'
 import { MakeSaveProductUseCase } from '@/use-cases/factory/make-save-product-use-case'
 import { MakeListProductUseCase } from '@/use-cases/factory/make-list-product-use-case'
@@ -7,8 +6,6 @@ import { env } from '@/env'
 const fetchData = async () => {
   cron.schedule('0 * * * *', async () => {
     console.log('Running a task...')
-
-    await app.ready()
 
     const fetchData = await fetch(env.API_EXTERNAL)
 
@@ -39,7 +36,6 @@ const fetchData = async () => {
       list.push(product)
     }
 
-    await app.close()
     console.log(`Task completed in ${new Date().toISOString()}`)
   })
 }
